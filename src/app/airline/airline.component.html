@@ -1,0 +1,68 @@
+<h1 style="margin-top: 5%; color:navy;text-align: center;"><u>AirLine Management</u></h1>
+<br/>
+<form style="margin-left: 5%;">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputAirlineName">Airline Name</label>
+        <input type="text" class="form-control"  [(ngModel)]="airlineModel.airlineName" [ngModelOptions]="{standalone: true}" id="inputAirlineName" placeholder="Airline Name">
+      </div>
+      <br/>
+      <div class="form-group col-md-6">
+        <label for="inputPhone">Phone Number</label>
+        <input type="text" class="form-control" [(ngModel)]="airlineModel.phoneNumber" [ngModelOptions]="{standalone: true}" id="inputPhone" placeholder="Phone Number">
+      </div>
+      <br/>
+      <div class="form-group col-md-6">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" [(ngModel)]="airlineModel.address" [ngModelOptions]="{standalone: true}" id="inputAddress" placeholder="Address">
+      </div>
+      <br/>
+      <div class="form-group col-md-6">
+        <label for="inputDescription">Description</label>
+        <input type="text" class="form-control" [(ngModel)]="airlineModel.description" [ngModelOptions]="{standalone: true}"  id="inputDescription" placeholder="Description">
+      </div>
+      <br/>
+      <div class="form-group col-md-6">
+        <label for="inputState">State</label>
+        <select id="inputState" [(ngModel)]="airlineModel.airlineStatus" [ngModelOptions]="{standalone: true}" class="form-control">
+          <option selected>Choose Status</option>
+          <option>Active</option>
+          <option>Blocked</option>
+        </select>
+      </div>
+      <br/>
+      <div class="form-group col-md-6">
+        <label for="formFile" class="form-label">Upload Logo </label>
+        <input class="form-control" [(ngModel)]="airlineModel.logo" [ngModelOptions]="{standalone: true}"  type="file" id="formFile">
+      </div>
+    </div>
+    <br/>
+    <button type="submit" (click)="AddAirline(airlineModel)" id="btnAdd" class="btn btn-primary">{{!this.EditButton ? "Add Airline" : "Edit Airline"}}</button>
+  </form>
+  <br/>
+<br/>
+
+  
+  <h2 style="margin-left: 5%;"><b>List of Airlines</b></h2>
+  <table class="table table-striped">
+    <thead class="thead-dark" style="background-color: black; color: white;">
+        <td>Logo</td>
+        <td>Airline Name</td>
+        <td>Phone Number</td>
+        <td>Address</td>
+        <td>Description</td>
+        <td>Actions</td>
+    </thead>
+    <tr *ngFor="let airline of airlineModels">
+        <td>{{airline.logo}}</td>
+        <td>{{airline.airlineName}}</td>
+        <td>{{airline.phoneNumber}}</td>  
+        <td>{{airline.address}}</td>  
+        <td>{{airline.description}}</td>  
+        <td>
+            <button type="button" (click)=EditAirline(airline) class="btn btn-outline-primary"
+                style="margin:10px">Edit</button>
+            <button type="button" (click)=DeleteAirline(airline) class="btn btn-outline-primary">Delete</button>
+        </td>
+    </tr>
+</table>

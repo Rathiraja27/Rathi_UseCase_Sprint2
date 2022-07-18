@@ -1,0 +1,18 @@
+<h2 style="margin-top: 5%; color:navy;text-align: center;"><b>Booking History</b></h2>
+  <table class="table table-striped">
+    <thead class="thead-dark" style="background-color: black; color: white;">
+        <td>Flight</td>
+        <td>Total Seats</td>
+        <td>Booked On</td>
+        <td>Actions</td>
+    </thead>
+    <tr *ngFor="let booking of bookingModels">
+        <td>{{booking.flightId}}</td>
+        <td>{{booking.seatsToBook}}</td>  
+        <td>{{booking.bookedOn}}</td>  
+        <td>
+            <button type="button" (click)="ViewDetails(booking)" class="btn btn-outline-primary"
+                style="margin:10px">View Details</button>
+        </td>
+    </tr>
+</table>

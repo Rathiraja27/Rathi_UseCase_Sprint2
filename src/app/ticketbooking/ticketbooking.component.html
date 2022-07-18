@@ -1,0 +1,36 @@
+<h1 style="margin-top: 5%; color:navy;text-align: center;"><u>Ticket Booking Management</u></h1>
+<br />
+<form style="margin-left: 5%;">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCustomerName">Customer Name</label>
+            <input type="text" class="form-control" [(ngModel)]="bookingModel.customerName"
+                [ngModelOptions]="{standalone: true}" id="inputCustomerName">
+        </div>
+        <br />
+        <div class="form-group col-md-6">
+            <label for="inputEmail">Email Id</label>
+            <input type="text" class="form-control" [(ngModel)]="bookingModel.email"
+                [ngModelOptions]="{standalone: true}" id="inputEmail">
+        </div>
+        <br />
+        <div class="form-group col-md-6">
+            <label for="inputSeats">No. of Seats</label>
+            <input type="text" class="form-control" [(ngModel)]="bookingModel.seatsToBook"
+                [ngModelOptions]="{standalone: true}" id="inputSeats">
+        </div>
+        <br />
+        <div class="form-group col-md-6">
+            <label for="inputFlight">Flight</label>
+            <select type="text" class="form-control" [(ngModel)]="scheduleModel.flightName" [ngModelOptions]="{standalone: true}" (change) = "OnSelect($event)" id="FlightName">
+                <option  *ngFor="let schedule of scheduleModels " [value]="schedule.flightId">
+                    {{schedule.flightName}}
+                </option>
+            </select>
+          </div>
+          <br/>
+        <br />
+        <br />
+        <button type="submit" (click)="Navigate(bookingModel)" id="btnAdd" class="btn btn-primary">Next</button>
+    </div>   
+</form>

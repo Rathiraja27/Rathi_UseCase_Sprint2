@@ -1,0 +1,141 @@
+<!-- <h1 style="margin-top: 5%; color:navy;text-align: center;"><u>Ticket Booking Management</u></h1>
+<br />
+<form style="margin-left: 5%;">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputPassengerName">Passenger Name</label>
+            <input type="text" class="form-control" [(ngModel)]="passengerModel.passengerName"
+                [ngModelOptions]="{standalone: true}" id="inputPassengerName">
+        </div>
+        <br />
+        <div class="form-group col-md-6">
+            <label for="inputPassengerAge">Age</label>
+            <input type="text" class="form-control" [(ngModel)]="passengerModel.passengerAge"
+                [ngModelOptions]="{standalone: true}" id="inputPassengerAge">
+        </div>
+        <br />
+        <div class="form-group col-md-6">
+            <label for="inputMeals">Meal</label>
+            <select id="inputMeals" [(ngModel)]="passengerModel.meal" [ngModelOptions]="{standalone: true}" class="form-control">
+              <option>Veg</option>
+              <option>Non-veg</option>
+            </select>
+        </div>
+        <br />
+        <div class="form-group col-md-6">
+            <label for="inputFlight">Flight</label>
+            <select type="text" class="form-control" [(ngModel)]="scheduleModel.flightName" [ngModelOptions]="{standalone: true}" (change) = "OnSelect($event)" id="FlightName">
+                <option  *ngFor="let schedule of scheduleModels " [value]="schedule.flightId">
+                    {{schedule.flightName}}
+                </option>
+            </select>
+          </div>
+          <br/>
+        <br />
+        <br />
+        <!-- <button type="submit" (click)="AddBooking(bookingModel)" id="btnAdd" class="btn btn-primary">Next</button> -->
+<!-- </div>
+</form> --> -->
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--Card-->
+<div class="card shadow mb-5 bg-white rounded">
+
+    <!--Card-Body-->
+    <div class="card-body">
+
+        <!--Card-Title-->
+        <p class="card-title text-center shadow mb-5 rounded">Travel Booking Form</p>
+
+        <div class="icons text-center">
+
+            <i class="fa fa-plane fa-2x" aria-hidden="true"></i>
+            <i class="fa fa-taxi fa-2x" aria-hidden="true"></i>
+            <i class="fa fa-train fa-2x" aria-hidden="true"></i>
+
+
+        </div>
+
+        <hr>
+
+        <p class="searchText"><strong>Search For Flights</strong></p>
+
+        <!--First Row-->
+        <div class="row mb-3 mt-3">
+
+            <label class="radiobtn"><input [(ngModel)]="passengerModel.trip" [ngModelOptions]="{standalone: true}" type="radio" name="trip" value="Oneway">One Way</label>
+            <label class="radiobtn"><input [(ngModel)]="passengerModel.trip" [ngModelOptions]="{standalone: true}" type="radio" name="trip" value="Twoway">Round Trip</label>
+
+        </div>
+
+
+        <!--Second Row-->
+        <div class="row">
+
+            <div class="col-sm-6">
+                <select class="browser-default custom-select mb-4" id="select" [(ngModel)]="passengerModel.fromLocation" [ngModelOptions]="{standalone: true}">
+                    <option value="" disabled="" selected="">From City/Airport</option>
+                    <option>Chennai</option>
+                    <option>Hyderabad</option>
+                    <option>Delhi</option>
+                    <option>Cochin</option>
+                    <option>West Bengal</option>
+                    <option>Kolkata</option>
+                    <option>Mumbai</option>
+                </select>
+            </div>
+
+            <div class="col-sm-6">
+                <select class="browser-default custom-select mb-4" id="select" [(ngModel)]="passengerModel.toLocation" [ngModelOptions]="{standalone: true}">
+                    <option value="" disabled="" selected="">To City/Airport</option>
+                    <option>Chennai</option>
+                    <option>Hyderabad</option>
+                    <option>Delhi</option>
+                    <option>Cochin</option>
+                    <option>West Bengal</option>
+                    <option>Kolkata</option>
+                    <option>Mumbai</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <!--Third Row-->
+        <div class="row">
+
+            <div class="col-sm-6">
+                <input placeholder="&#xf073; Departing" type="text" id="date-picker-example"
+                    class="form-control datepicker mb-4" style="font-family:Arial, FontAwesome" [(ngModel)]="passengerModel.startDateTime" [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="col-sm-6">
+                <input placeholder="&#xf073; Arriving" type="text" id="date-picker-example"
+                    class="form-control datepicker" style="font-family:Arial, FontAwesome" [(ngModel)]="passengerModel.endDateTime" [ngModelOptions]="{standalone: true}">
+            </div>
+        </div>
+    </div>
+
+    <a (click)=SearchFlight(passengerModel) class="btn btn-primary float-right mt-5">Find Flights</a>
+</div>
+
+<h2 style="margin-left: 5%;"><b>List of Flights</b></h2>
+  <table class="table table-striped">
+    <thead class="thead-dark" style="background-color: black; color: white;">
+        <td>Flight Name</td>
+        <td>From</td>
+        <td>To</td>
+        <td>Start date</td>
+        <td>Book</td>
+    </thead>
+    <tr *ngFor="let schedule of scheduleModels">
+        <td>{{schedule.flightName}}</td>
+        <td>{{schedule.fromPlace}}</td>
+        <td>{{schedule.toPlace}}</td>  
+        <td>{{schedule.startDateTime}}</td>  
+        <td>
+            <button type="button"  class="btn btn-outline-primary"
+                style="margin:10px">Book</button>
+        </td>
+    </tr>
